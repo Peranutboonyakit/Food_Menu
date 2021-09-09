@@ -7,7 +7,7 @@ const Nav = () => {
         <Container>
             <h1>Food Shop</h1>
 
-            <Icon >
+            <Icon>
                 <FaShoppingCart
                     style={{ width: '30px', height: '30px'}}
                 />
