@@ -8,6 +8,7 @@ const ListShop = () => {
     const [searchInput, setSearchInput] = useState('')
     const [dataFilter] = useState(['shop', 'listMenu'])
 
+
     const searchMenu = (menus) => {
         return menus.filter((menu) => {
             return dataFilter.some((filter) => {
@@ -25,10 +26,11 @@ const ListShop = () => {
             />
 
             <ContainerMenu>
-                {searchMenu(data).map((item, index) => {
+                {searchMenu(data).map((item) => {
+                    
                     return (
-                        <Link to='/shop' style={{textDecoration:'none'}}>
-                            <CardBox key={index}>
+                       <Link to='/shop' key={item.id} style={{textDecoration:'none'}}>
+                            <CardBox >
                                 <Content>
                                     <img src={item.image} alt={item.shop} />
                                     <div className='desc'>
@@ -39,7 +41,7 @@ const ListShop = () => {
                                     </div>
                                 </Content>
                             </CardBox>
-                        </Link>
+                       </Link>
                     );
                 })}
             </ContainerMenu>

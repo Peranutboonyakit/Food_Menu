@@ -1,21 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import ListShop from './components/ListShop'
 import Nav from './components/Nav'
 import Shop from './components/Shop'
+import Cart from './components/Cart.jsx'
 
 const App = () => {
   return (
     <Container>
-      <Nav/>
-      <Router>
+      <Nav />
+    
         <Switch>
-          <Route exact path='/' component={ListShop}/>
-          <Route path='/shop' component={Shop}/>
+          <Route exact path='/'>
+            <ListShop />
+          </Route>
+          <Route path='/shop'>
+            <Shop />
+          </Route>
+          <Route path='/cart'>
+            <Cart />
+          </Route>
         </Switch>
-      </Router>
       
+
     </Container>
   )
 }

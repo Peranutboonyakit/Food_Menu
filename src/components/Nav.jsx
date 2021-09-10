@@ -1,17 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
     return (
         <Container>
-            <h1>Food Shop</h1>
+            <Link to='/' style={{
+                color: 'whitesmoke',
+                textDecoration: 'none'
+            }}>
+                <h1>Food Shop</h1>
+            </Link>
 
-            <Icon>
-                <FaShoppingCart
-                    style={{ width: '30px', height: '30px'}}
-                />
-            </Icon>
+
+            <Link to='/cart' style={{ color: 'white' }}>
+                <Icon>
+                    <FaShoppingCart
+                        style={{ width: '30px', height: '30px', position: 'relative' }}
+                    />
+                    <div style={{
+                        width: '18px',
+                        backgroundColor: 'red',
+                        borderRadius: '50px',
+                        fontWeight: 'bold',
+                        fontSize: '13px',
+                        textAlign: 'center',
+                        position: 'absolute',
+                        top: 10,
+                        right: 330,
+                    }}>
+                        3
+                    </div>
+                </Icon>
+            </Link>
         </Container>
     )
 }

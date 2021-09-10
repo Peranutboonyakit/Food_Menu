@@ -4,7 +4,7 @@ const data = [
         'image': 'https://i.ytimg.com/vi/xbYGXTFr36E/maxresdefault.jpg',
         'shop': 'ร้านโจ๊กหมู',
         'listMenu': [
-            'ข้าวหมูกรอบผัดพริกเผา', 'กะเพราเนื้อ'
+            'ข้าวหมูกรอบผัดพริกเผา', 'กะเพราเนื้อ',
         ],
     },
     {
@@ -12,7 +12,7 @@ const data = [
         'image': 'https://www.เพื่อนแท้ร้านอาหาร.com/wp-content/uploads/2020/05/grilled-beef-steak.jpg',
         'shop': 'ร้านน้องด้วง',
         'listMenu': [
-            'สลัดผัก', 'สเต็กปลาดอลลี่', 'สปาเก็ตตี้', 'พอร์คชอป'
+            'สลัดผัก', 'สเต็กปลาดอลลี่'
         ],
     },
     {
@@ -20,7 +20,7 @@ const data = [
         'image': 'https://radioelectronicschool.net/wp-content/uploads/2019/09/Bonchon-chicken.jpg',
         'shop': 'Jeju Chicken',
         'listMenu': [
-            'ไก่ทอด(xl)', 'ไก่ทอด(l)', 'ไก่ทอด(m)'
+            'ไก่ทอด(xl)', 'ไก่ทอด(l)', 
         ]
     },
     {
@@ -28,7 +28,7 @@ const data = [
         'image' : 'https://assets.grab.com/wp-content/uploads/sites/10/2020/03/01165644/88339222_s-700x467.jpg',
         'shop' : "J แคนดี้",
         'listMenu' : [
-            'ส้มตำปูปลาร้า', 'ไก่ย่าง', 'คอหมูย่าง'
+            'ส้มตำปูปลาร้า', 'ไก่ย่าง'
         ]
     },
     {
@@ -44,7 +44,7 @@ const data = [
         'image' : 'https://img.wongnai.com/p/1920x0/2019/06/15/7f9b170f206b4606bef65060ee049207.jpg',
         'shop' : 'ร้านนายดำ',
         'listMenu' : [
-            'น้ำปั่นนมสด', 'ยาคูลปีโป้', 'โกโก้ปั่น'
+            'น้ำปั่นนมสด', 'ยาคูลปีโป้'
         ]
     },
 ]
