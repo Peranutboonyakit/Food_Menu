@@ -8,7 +8,7 @@ const ListShop = () => {
     const [searchInput, setSearchInput] = useState('') 
     const [shop, setShop] = useState([])
     const [dataFilter] = useState(['shop', 'listMenu']) 
-    const history = useHistory();
+    let history = useHistory();
 
     useEffect(() => {                               // Get data
         async function getData() {

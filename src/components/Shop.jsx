@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
+
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 
-const Shop = (id) => {
 
+const Shop = (props) => {
+console.log(props)
     const [shop, setShop] = useState({})
     const [count, setCount] = useState('')
     const [count2, setCount2] = useState('')
+    const [countItem, setCountItem] = useState(0)
     let params = useParams();
-
+    
     async function getDataById() {
-        let request = await fetch("http://localhost:3004/data/" + params?.shopId)
+        let request = await fetch("http://localhost:3004/data/" + params.shopId)
         let res = await request.json();
         setShop(res)
     }
@@ -18,10 +21,6 @@ const Shop = (id) => {
     useEffect(() => {
         getDataById();
     }, [])
-
-    //const increment = () => {
-    //    setCount(count + 1)
-    //}
 
     return (
         <Container>
@@ -33,7 +32,7 @@ const Shop = (id) => {
                         <h4>฿{shop.menu1?.price}</h4>
 
                         <div style={{ display: 'flex' }}>
-                            <input onChange={(e) => setCount(e.target.value)} value={count} placeholder="0"/>
+                            <input onChange={(e) => setCount(e.target.value)} value={count} placeholder="0" />
                             {/*<button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
                             <h4 style={{ margin: '0 9px' }}>{count}</h4>
                             <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>*/}
@@ -46,15 +45,15 @@ const Shop = (id) => {
                         <h4>฿{shop.menu2?.price}</h4>
 
                         <div style={{ display: 'flex' }}>
-                            <input onChange={(e) => setCount2(e.target.value)} value={count2}  placeholder="0" />
+                            <input onChange={(e) => setCount2(e.target.value)} value={count2} placeholder="0" />
                         </div>
                     </div>
                 </Menu>
 
-                <h4 style={{ textAlign: 'end' }}>Total : ฿ {(shop.menu1?.price*count)+(shop.menu2?.price*count2)}</h4>
+                <h4 style={{ textAlign: 'end' }}>Total : ฿ {(shop.menu1?.price * count) + (shop.menu2?.price * count2)}</h4>
 
                 <Button>
-                    <button>add to cart</button>
+                    <button>Order now</button>
                 </Button>
             </ContentBox>
         </Container>

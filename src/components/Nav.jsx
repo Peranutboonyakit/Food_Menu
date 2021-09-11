@@ -3,7 +3,12 @@ import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
+
 const Nav = () => {
+
+
+
+
     return (
         <Container>
             <Link to='/' style={{
@@ -30,7 +35,7 @@ const Nav = () => {
                         top: 10,
                         right: 330,
                     }}>
-                        3
+                        0
                     </div>
                 </Icon>
             </Link>
@@ -48,6 +53,4 @@ const Container = styled.div`
     background: salmon;
     color: white;
 `
-const Icon = styled.div`
-    
-`
+const Icon = styled.div``
