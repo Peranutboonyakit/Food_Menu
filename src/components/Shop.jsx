@@ -1,27 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 import styled from 'styled-components'
 
 const Shop = () => {
 
+    const [shop, setShop] = useState({})
+    let params = useParams();
+
+    async function getDataById() {
+        let request = await fetch("http://localhost:3004/data/" + params?.shopId)
+        let res = await request.json();
+        setShop(res)
+    }
+
+    useEffect(() => {
+        getDataById();
+    }, [])
+
     return (
         <Container>
             <ContentBox>
-                <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>Shop</h1>
+                <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>{shop.shop}</h1>
                 <Menu>
-                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                        <h4>กะเพราไก่ไข่ดาว</h4>
-                        <h4>฿50</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <h4>{shop.menu1?.food}</h4>
+                        <h4>฿{shop.menu1?.price}</h4>
                         <h4>จำนวน</h4>
                     </div>
                 </Menu>
                 <Menu>
-                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                        <h4>กะเพราไก่ไข่ดาว</h4>
-                        <h4>฿50</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <h4>{shop.menu2?.food}</h4>
+                        <h4>฿{shop.menu2?.price}</h4>
                         <h4>จำนวน</h4>
                     </div>
                 </Menu>
-
 
                 <Button>
                     <button>add to cart</button>
@@ -54,7 +67,7 @@ const Menu = styled.div`
   padding: 10px;
   
 `
-const Button = styled.button`
+const Button = styled.div`
     display: flex;
     justify-content: end;
     background: #fff;

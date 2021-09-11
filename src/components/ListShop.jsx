@@ -1,15 +1,29 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components'
-import data from '../data'
+
 
 const ListShop = () => {
 
-    const [searchInput, setSearchInput] = useState('')
-    const [dataFilter] = useState(['shop', 'listMenu'])
+    const [searchInput, setSearchInput] = useState('') 
+    const [shop, setShop] = useState([])
+    const [dataFilter] = useState(['shop', 'listMenu']) 
+    const history = useHistory();
 
+    useEffect(() => {                               // Get data
+        async function getData() {
+            let request = await fetch("http://localhost:3004/data")
+            let foods = await request.json()
+            setShop(foods)
+        }
+        getData();
+    }, []);
 
-    const searchMenu = (menus) => {
+    const goShop=(shopId)=>{
+        history.push("/shop/"+ shopId);
+    }
+
+    const searchMenu = (menus) => {                // Search
         return menus.filter((menu) => {
             return dataFilter.some((filter) => {
                 return menu[filter].toString().toLowerCase().includes(searchInput.toLowerCase())
@@ -26,22 +40,20 @@ const ListShop = () => {
             />
 
             <ContainerMenu>
-                {searchMenu(data).map((item) => {
-                    
+                {searchMenu(shop).map((item) => {
+
                     return (
-                       <Link to='/shop' key={item.id} style={{textDecoration:'none'}}>
-                            <CardBox >
-                                <Content>
-                                    <img src={item.image} alt={item.shop} />
-                                    <div className='desc'>
-                                        <h3>{item.shop}</h3>
-                                        <div>
-                                            <p>{item.listMenu +''}</p>
-                                        </div>
+                        <CardBox key={item.id} onClick={()=>goShop(item.id)}>
+                            <Content>
+                                <img src={item.image} alt={item.shop} />
+                                <div className='desc'>
+                                    <h3>{item.shop}</h3>
+                                    <div>
+                                        <p>{item.listMenu + ''}</p>
                                     </div>
-                                </Content>
-                            </CardBox>
-                       </Link>
+                                </div>
+                            </Content>
+                        </CardBox>
                     );
                 })}
             </ContainerMenu>
