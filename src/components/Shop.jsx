@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 
-const Shop = () => {
+const Shop = (id) => {
 
     const [shop, setShop] = useState({})
+    const [count, setCount] = useState(0)
     let params = useParams();
 
     async function getDataById() {
@@ -17,6 +18,13 @@ const Shop = () => {
         getDataById();
     }, [])
 
+    const increment = () => {
+        setCount(count + 1)
+    }
+    const decrement = () => {
+        count <= 0 ? setCount(0) : setCount(count - 1)
+    }
+
     return (
         <Container>
             <ContentBox>
@@ -25,14 +33,24 @@ const Shop = () => {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <h4>{shop.menu1?.food}</h4>
                         <h4>฿{shop.menu1?.price}</h4>
-                        <h4>จำนวน</h4>
+
+                        <div style={{ display: 'flex' }}>
+                            <button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
+                            <h4 style={{ margin: '0 9px' }}>{count}</h4>
+                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>
+                        </div>
                     </div>
                 </Menu>
                 <Menu>
-                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <h4>{shop.menu2?.food}</h4>
                         <h4>฿{shop.menu2?.price}</h4>
-                        <h4>จำนวน</h4>
+
+                        <div style={{ display: 'flex' }}>
+                            <button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
+                            <h4 style={{ margin: '0 9px' }}>{count}</h4>
+                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>
+                        </div>
                     </div>
                 </Menu>
 
@@ -65,7 +83,6 @@ const ContentBox = styled.div`
 const Menu = styled.div`
   border: 1px solid red;
   padding: 10px;
-  
 `
 const Button = styled.div`
     display: flex;
