@@ -5,7 +5,8 @@ import styled from 'styled-components'
 const Shop = (id) => {
 
     const [shop, setShop] = useState({})
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState('')
+    const [count2, setCount2] = useState('')
     let params = useParams();
 
     async function getDataById() {
@@ -18,12 +19,9 @@ const Shop = (id) => {
         getDataById();
     }, [])
 
-    const increment = () => {
-        setCount(count + 1)
-    }
-    const decrement = () => {
-        count <= 0 ? setCount(0) : setCount(count - 1)
-    }
+    //const increment = () => {
+    //    setCount(count + 1)
+    //}
 
     return (
         <Container>
@@ -35,9 +33,10 @@ const Shop = (id) => {
                         <h4>฿{shop.menu1?.price}</h4>
 
                         <div style={{ display: 'flex' }}>
-                            <button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
+                            <input onChange={(e) => setCount(e.target.value)} value={count} placeholder="0"/>
+                            {/*<button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
                             <h4 style={{ margin: '0 9px' }}>{count}</h4>
-                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>
+                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>*/}
                         </div>
                     </div>
                 </Menu>
@@ -47,12 +46,12 @@ const Shop = (id) => {
                         <h4>฿{shop.menu2?.price}</h4>
 
                         <div style={{ display: 'flex' }}>
-                            <button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
-                            <h4 style={{ margin: '0 9px' }}>{count}</h4>
-                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>
+                            <input onChange={(e) => setCount2(e.target.value)} value={count2}  placeholder="0" />
                         </div>
                     </div>
                 </Menu>
+
+                <h4 style={{ textAlign: 'end' }}>Total : ฿ {(shop.menu1?.price*count)+(shop.menu2?.price*count2)}</h4>
 
                 <Button>
                     <button>add to cart</button>
@@ -81,9 +80,18 @@ const ContentBox = styled.div`
    justify-content: space-around;
 `
 const Menu = styled.div`
-  border: 1px solid red;
   padding: 10px;
-`
+  button{
+      cursor: pointer;
+  }
+  input{
+    outline: none;
+    border: 1px solid salmon;
+    text-align: center;
+    width: 70px;
+    border-radius: 13px;
+  }
+  `
 const Button = styled.div`
     display: flex;
     justify-content: end;
