@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 const Nav = () => {
 
-
-
+    const cart = useSelector(state=> state.cart)
 
     return (
         <Container>
@@ -24,19 +24,6 @@ const Nav = () => {
                     <FaShoppingCart
                         style={{ width: '30px', height: '30px', position: 'relative' }}
                     />
-                    <div style={{
-                        width: '18px',
-                        backgroundColor: 'red',
-                        borderRadius: '50px',
-                        fontWeight: 'bold',
-                        fontSize: '13px',
-                        textAlign: 'center',
-                        position: 'absolute',
-                        top: 10,
-                        right: 330,
-                    }}>
-                        0
-                    </div>
                 </Icon>
             </Link>
         </Container>

@@ -5,9 +5,9 @@ import styled from 'styled-components'
 
 const ListShop = () => {
 
-    const [searchInput, setSearchInput] = useState('') 
+    const [searchInput, setSearchInput] = useState('')
     const [shop, setShop] = useState([])
-    const [dataFilter] = useState(['shop', 'listMenu']) 
+    const [dataFilter] = useState(['shop', 'listMenu'])
     let history = useHistory();
 
     useEffect(() => {                               // Get data
@@ -19,8 +19,8 @@ const ListShop = () => {
         getData();
     }, []);
 
-    const goShop=(shopId)=>{
-        history.push("/shop/"+ shopId);
+    const goShop = (shopId) => {
+        history.push("/shop/" + shopId);
     }
 
     const searchMenu = (menus) => {                // Search
@@ -32,31 +32,38 @@ const ListShop = () => {
     }
 
     return (
+
         <Container>
-            <Input
-                value={searchInput}
-                onChange={(e) => { setSearchInput(e.target.value) }}
-                placeholder='Search Restaurants or Menus'
-            />
+            {shop.length === 0 ? <h3>404 Not Found. Please read file "README.md"</h3>
+                :
+                <>
+                    <Input
+                        value={searchInput}
+                        onChange={(e) => { setSearchInput(e.target.value) }}
+                        placeholder='Search Restaurants or Menus'
+                    />
 
-            <ContainerMenu>
-                {searchMenu(shop).map((item) => {
+                    <ContainerMenu>
+                        {searchMenu(shop).map((item) => {
+                            return (
+                                <CardBox key={item.id} onClick={() => goShop(item.id)}>
+                                    <Content>
+                                        <img src={item.image} alt={item.shop} />
+                                        <div className='desc'>
+                                            <h3>{item.shop}</h3>
+                                            <div>
+                                                <p>{item.listMenu + ''}</p>
+                                            </div>
+                                        </div>
+                                    </Content>
+                                </CardBox>
+                            );
+                        })}
 
-                    return (
-                        <CardBox key={item.id} onClick={()=>goShop(item.id)}>
-                            <Content>
-                                <img src={item.image} alt={item.shop} />
-                                <div className='desc'>
-                                    <h3>{item.shop}</h3>
-                                    <div>
-                                        <p>{item.listMenu + ''}</p>
-                                    </div>
-                                </div>
-                            </Content>
-                        </CardBox>
-                    );
-                })}
-            </ContainerMenu>
+                    </ContainerMenu>
+                </>
+            }
+
         </Container>
     )
 }

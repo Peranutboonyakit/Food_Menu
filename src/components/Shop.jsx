@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { useParams } from 'react-router'
 import styled from 'styled-components'
+import { orderNow } from '../redux/carttSlice'
 
 
-const Shop = (props) => {
-console.log(props)
+const Shop = () => {
+
     const [shop, setShop] = useState({})
     const [count, setCount] = useState('')
     const [count2, setCount2] = useState('')
-    const [countItem, setCountItem] = useState(0)
     let params = useParams();
-    
+    console.log(shop);
     async function getDataById() {
         let request = await fetch("http://localhost:3004/data/" + params.shopId)
         let res = await request.json();
@@ -21,6 +22,8 @@ console.log(props)
     useEffect(() => {
         getDataById();
     }, [])
+
+    const dispatch = useDispatch()
 
     return (
         <Container>
@@ -32,10 +35,7 @@ console.log(props)
                         <h4>฿{shop.menu1?.price}</h4>
 
                         <div style={{ display: 'flex' }}>
-                            <input onChange={(e) => setCount(e.target.value)} value={count} placeholder="0" />
-                            {/*<button onClick={decrement} style={{ border: 'none', backgroundColor: 'white' }}>-</button>
-                            <h4 style={{ margin: '0 9px' }}>{count}</h4>
-                            <button onClick={increment} style={{ border: 'none', backgroundColor: 'white' }}>+</button>*/}
+                            <input onChange={(e) => setCount(e.target.value)} value={count} placeholder="0" type='number' />
                         </div>
                     </div>
                 </Menu>
@@ -43,9 +43,8 @@ console.log(props)
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <h4>{shop.menu2?.food}</h4>
                         <h4>฿{shop.menu2?.price}</h4>
-
                         <div style={{ display: 'flex' }}>
-                            <input onChange={(e) => setCount2(e.target.value)} value={count2} placeholder="0" />
+                            <input onChange={(e) => setCount2(e.target.value)} value={count2} placeholder="0" type='number' />
                         </div>
                     </div>
                 </Menu>
@@ -53,10 +52,17 @@ console.log(props)
                 <h4 style={{ textAlign: 'end' }}>Total : ฿ {(shop.menu1?.price * count) + (shop.menu2?.price * count2)}</h4>
 
                 <Button>
-                    <button>Order now</button>
+                    <button onClick={() => dispatch(
+                        orderNow({
+                            shopId: shop.id,
+                            shopName: shop.shop,
+                            date: Date(),
+                            quantity: 1
+                        }))}
+                    >Order now</button>
                 </Button>
             </ContentBox>
-        </Container>
+        </Container >
     )
 }
 
@@ -68,7 +74,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
 `
-const ContentBox = styled.div`
+export const ContentBox = styled.div`
    width: 50%;
    height: 350px;
    border-radius: 30px;
@@ -80,9 +86,6 @@ const ContentBox = styled.div`
 `
 const Menu = styled.div`
   padding: 10px;
-  button{
-      cursor: pointer;
-  }
   input{
     outline: none;
     border: 1px solid salmon;
@@ -101,8 +104,12 @@ const Button = styled.div`
             padding: 10px;
             border-radius: 20px;
             display: flex;
-            border: 1px solid green;
+            border: 0px solid green;
             color: white;
             background-color: green;
+
+        &:hover{
+            background-color: #0ea00e;
+        }
     }
 `
