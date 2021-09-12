@@ -1,7 +1,7 @@
 import { Button, Modal } from 'react-bootstrap'
 
 export function MyModal(props) {
-  console.log(props)
+
   return (
     <Modal
       {...props}

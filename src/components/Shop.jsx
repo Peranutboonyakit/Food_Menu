@@ -25,6 +25,14 @@ const Shop = () => {
 
     const dispatch = useDispatch()
 
+    const checkAdd = () => {
+        if (count.length == 0 && count2.length == 0) {
+            alert("No item")
+        } else {
+            alert(" Your order added ")
+        }
+    }
+
     return (
         <Container>
             <ContentBox>
@@ -61,7 +69,8 @@ const Shop = () => {
                             count2: count2,
                             menu1: shop.menu1.food,
                             menu2: shop.menu2.food
-                        }))}
+                        }), checkAdd(), setCount(''), setCount2('')
+                    )}
                     >Order now</button>
                 </Button>
             </ContentBox>

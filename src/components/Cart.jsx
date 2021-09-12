@@ -51,7 +51,7 @@ const Container = styled.div`
     height: 90vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;  
 `
 const ContentBox2 = styled(ContentBox)`
     height: auto;
