@@ -57,7 +57,10 @@ const Shop = () => {
                             shopId: shop.id,
                             shopName: shop.shop,
                             date: Date(),
-                            quantity: 1
+                            count: count,
+                            count2: count2,
+                            menu1: shop.menu1.food,
+                            menu2: shop.menu2.food
                         }))}
                     >Order now</button>
                 </Button>

@@ -15,7 +15,8 @@ export function MyModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-
+        {props.cart.count <= 0 ?  '': <p>{props.cart.menu1}  {props.cart.count}</p> }
+        {props.cart.count2 <= 0 ?  '': <p>{props.cart.menu2}  {props.cart.count2}</p> }
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide} variant='danger'>Close</Button>
