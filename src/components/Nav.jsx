@@ -2,12 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-
 
 const Nav = () => {
-
-    const cart = useSelector(state=> state.cart)
 
     return (
         <Container>

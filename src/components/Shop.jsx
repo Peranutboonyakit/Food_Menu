@@ -13,6 +13,7 @@ const Shop = () => {
     const [count2, setCount2] = useState('')
     let params = useParams();
     console.log(shop);
+
     async function getDataById() {
         let request = await fetch("http://localhost:3004/data/" + params.shopId)
         let res = await request.json();
@@ -26,7 +27,7 @@ const Shop = () => {
     const dispatch = useDispatch()
 
     const checkAdd = () => {
-        if (count.length == 0 && count2.length == 0) {
+        if (count.length === 0 && count2.length === 0) {
             alert("No item")
         } else {
             alert(" Your order added ")
